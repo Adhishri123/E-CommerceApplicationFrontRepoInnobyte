@@ -1,0 +1,24 @@
+<!-- <p>login works!</p> -->
+<div>
+    <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+        <div>
+            <input type="email" formControlName="email" placeholder="User Email Id">
+            <div *ngIf="loginform.get('email')?.invalid && loginform.get('email')?.touched">
+                <small *ngIf="loginform.get('email')?.errors?.['required']">Email is required .</small>
+                <small *ngIf="loginform.get('email')?.errors?.['email']">Invalid email format .</small>
+            </div>
+        </div>
+        <div>
+            <input type="password" formControlName="password" placeholder="password">
+            <div *ngIf="loginform.get('password')?.invalid && loginform.get('password')?.touched">
+                <small *ngIf="loginform.get('password')?.errors?.['required']">Password is required.</small>
+            </div>
+        </div>
+        <button type="submit" [disabled]="loginform.invalid">LOGIN</button>
+        <span>don't have an account </span><button type="button" (click)="onRegister()">SIGNUP</button>
+
+        <!-- <div *ngIf="errorMessage">
+            <p class="error">{{ errorMessage }}</p>
+        </div> -->
+    </form>
+</div>

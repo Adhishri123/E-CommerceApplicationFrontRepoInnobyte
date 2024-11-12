@@ -1,0 +1,16 @@
+<!-- <p>signup works!</p> -->
+<div>
+    <form [formGroup]="signupform" (ngSubmit)="onSubmit()">
+        <input type="text" placeholder="Enter Full Name" formControlName="name" required>
+
+        <input type="email" placeholder="Enter Email Id" formControlName="email" required>
+
+        <input type="password" placeholder="Enter Password" formControlName="password" required>
+
+        <input type="text" placeholder="Enter Address" formControlName="address" required>
+
+        <button type="submit" [disabled]="signupform.invalid">SAVE</button>
+        
+        <span>Already have an account </span><button type="button" (click)="onLogin()">LOGIN</button>
+    </form>
+</div>
