@@ -2,7 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { UserstorageService } from './storage/userstorage.service';
-// import { Category } from '../model/category';
+
+// const TOKEN = 'ecom-token';
+// const USER = 'ecom-user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,20 +15,14 @@ export class CommonserviceService {
 
   addCategory(category:any): Observable<any> {
     return this.http.post("http://localhost:5050/admin/category",category);
-    // return this.http.post("http://localhost:5050/admin/category",category,{headers: this.createAuthorizationHeader()});
-  // return this.http.post("http://localhost:5050/admin/category",category);
   }
-
-  // private createAuthorizationHeader(): HttpHeaders {
-  //   return new HttpHeaders().set('Authorization','Bearer' + UserstorageService.getToken());
-  // }
 
   getAllCategory(): Observable<any> {
     return this.http.get("http://localhost:5050/admin/get_all_category");
   }
 
-  addProduct(product:any): Observable<any> {
-    return this.http.post("http://localhost:5050/product/add_products",product);
+  addProduct(productDto:any): Observable<any> {
+    return this.http.post("http://localhost:5050/product/add_products",productDto);
   }
 
   getAllProduct(): Observable<any> {
@@ -49,36 +45,64 @@ export class CommonserviceService {
     return this.http.delete("http://localhost:5050/product/delete_product/"+productId);
   }
 
-  // signupUser(user:User) {
-  //    return this.http.post("http://localhost:5050/users/signup_user",user);
-  // }
+  getAllProductForUser(): Observable<any> {
+    return this.http.get("http://localhost:5050/product/get_all_product_foruser");
+  }
 
-  // loginUser(userEmailId:string,password:string):Observable<User> {
+  getAllProductByNameForUser(name:any): Observable<any> {
+    return this.http.get("http://localhost:5050/product/search_foruser/"+name);
+  }
 
-  //   const headers = new HttpHeaders({
-  //     'content-type': 'application/x-www-form-urlencoded'
-  //   });
+  addToCart(productId:any): Observable<any> {
+    const cartDto = {
+      productId : productId,
+      userId : UserstorageService.getUserId()
+    }
+    return this.http.post("http://localhost:5050/orders/add_to_cart",cartDto);
+  }
 
-  //   const body = new URLSearchParams();
-  //   body.set('userEmailId',userEmailId);
-  //   body.set('password',password);
+  getCartByUserId(): Observable<any> {
+    const userId = UserstorageService.getUserId()
+    return this.http.get("http://localhost:5050/orders/get_in_cart/"+userId);
+  }
 
-  //   return this.http.post<User>("http://localhost:5050/users/login_user",body.toString(),{ headers});
-  // }
+  increaseCartItemQuantity(productId:any): Observable<any> {
+    const cartDto = {
+      productId : productId,
+      userId : UserstorageService.getUserId()
+    }
+    return this.http.post("http://localhost:5050/orders/increase_cartitem",cartDto);
+  }
 
-  // private userData! : User;
+  decreaseCartItemQuantity(productId:any): Observable<any> {
+    const cartDto = {
+      productId : productId,
+      userId : UserstorageService.getUserId()
+    }
+    return this.http.post("http://localhost:5050/orders/decrease_cartitem",cartDto);
+  }
 
-  // setUserdata(user:User) {
-  //   this.userData = user;
-  // }
+  placeOrder(orderDto:any): Observable<any> {
+    orderDto.userId = UserstorageService.getUserId()
+    return this.http.post("http://localhost:5050/orders/place_order",orderDto)
+  }
 
-  // getUserData():User {
-  //   return this.userData;
-  // }
+  getPlacedOrders(): Observable<any> {
+    return this.http.get("http://localhost:5050/orders/place_order_foradmin");
+  }
 
-  // updateUser(user:User) {
-  //   return this.http.put("http://localhost:5050/users/update_user/"+user.userId,user);
-  // }
+  changeOrderStatus(orderId:number,status:string): Observable<any> {
+    return this.http.get("http://localhost:5050/orders/change_order_status/"+orderId+status);
+  }
+
+  getOrderByUserId(): Observable<any> {
+    const userId = UserstorageService.getUserId()
+    return this.http.get("http://localhost:5050/orders/get_myOrders/"+userId);
+  }
+
+  addProductToWishlist(wishlistDto:any): Observable<any> {
+    return this.http.post("http://localhost:5050/product/add_product_towishlist",wishlistDto);
+  }
 
   signupUser(signupRequest:any) : Observable<any> {
     return this.http.post("http://localhost:5050/users/sign-up",signupRequest);
@@ -100,4 +124,32 @@ export class CommonserviceService {
       })
     );
   }
+
+  getUserProfile(): Observable<any> {
+    return this.http.get<any>("http://localhost:5050/users/profile", { headers:this.createAuthorizationHeader(), });
+  }
+  
+  // getUserProfile(): Observable<any> {
+  //   const token = localStorage.getItem(TOKEN);
+    
+  //   if (token) {
+  //     return this.http.get<any>("http://localhost:5050/users/profile", {
+  //       headers: { 'Authorization': `Bearer${token}` },
+  //     });
+  //   }
+  //    else {
+  //     return new Observable(observer => {
+  //       const user = localStorage.getItem(USER);
+  //       if (user) {
+  //         observer.next(JSON.parse(user));
+  //       } else {
+  //         observer.error('No user data found');
+  //       }
+  //     });
+  //   }
+  // }
+
+  private createAuthorizationHeader(): HttpHeaders {
+      return new HttpHeaders().set('Authorization','Bearer'+UserstorageService.getToken())
+    }
 }

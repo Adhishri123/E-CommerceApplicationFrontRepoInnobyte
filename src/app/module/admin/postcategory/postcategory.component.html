@@ -1,13 +1,17 @@
 <!-- <p>postcategory works!</p> -->
 <div class="container">
-   <h2>Add Category</h2>
-   <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+    <div class="mat-card">
+        <h2>Add Category</h2>
+        <div class="mat-card-content">
+            <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
 
-       <input type="text" placeholder="Product category name" formControlName="name" required>
-
-       <input type="text" placeholder="Product category description" formControlName="description" required>
-
-       <button type="submit" [disabled]="categoryForm.invalid">ADD CATEGORY</button>
-
-   </form>
+                <input type="text" placeholder="Product category name" formControlName="name" required>
+         
+                <input type="text" placeholder="Product category description" formControlName="description" required>
+         
+                <button type="submit" [disabled]="categoryForm.invalid">ADD CATEGORY</button>
+         
+            </form>
+        </div>
+    </div>    
 </div>

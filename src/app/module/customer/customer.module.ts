@@ -7,6 +7,9 @@ import { GetuserprofileComponent } from './getuserprofile/getuserprofile.compone
 import { AddproducttocartComponent } from './addproducttocart/addproducttocart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PlaceorderComponent } from './placeorder/placeorder.component';
+import { MyordersComponent } from './myorders/myorders.component';
 
 
 @NgModule({
@@ -15,11 +18,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     GetuserprofileComponent,
     AddproducttocartComponent,
     WishlistComponent,
-    DashboardComponent
+    DashboardComponent,
+    PlaceorderComponent,
+    MyordersComponent
   ],
   imports: [
     CommonModule,
-    CustomerRoutingModule
+    CustomerRoutingModule,   
+    FormsModule,
+    ReactiveFormsModule,
+    
   ]
 })
 export class CustomerModule { }

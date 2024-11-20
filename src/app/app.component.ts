@@ -12,14 +12,6 @@ export class AppComponent {
 
   searchQuery: string = '';
 
-  onSearch() {
-    if (this.searchQuery) {
-      console.log('Searching for:', this.searchQuery);
-      // Implement your search logic here
-      // For example, you could navigate to a search results page
-    }
-  }
-
   isCustomerLoggedin: boolean = UserstorageService.isCustomerLoggedin();
   isAdminLoggedin: boolean = UserstorageService.isAdminLoggedin();
 

@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private http:CommonserviceService,private fb:FormBuilder) { }
 
-  products:any[];
+  products:any[] = [];
 
   searchProductForm!:FormGroup;
 

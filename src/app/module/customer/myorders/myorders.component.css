@@ -1,0 +1,13 @@
+table{
+    border: 3px solid rgb(193, 139, 244);
+    text-align: center;
+}
+th,td{
+    border: 3px solid rgb(193, 139, 244);
+}
+tbody{
+    justify-content: center;
+}
+th{
+    color: green;
+}

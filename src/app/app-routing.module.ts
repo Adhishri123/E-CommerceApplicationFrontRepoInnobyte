@@ -5,21 +5,10 @@ import { LoginComponent } from './template/login/login.component';
 import { SignupComponent } from './template/signup/signup.component';
 
 const routes: Routes = [
-  // { path:"", redirectTo:"dash", pathMatch:"full" },
-  // { path:"dash", component:DashboardComponent,
-  //   children:[
-      // {path:"", redirectTo:"about" , pathMatch:"full"},
-      { path:"about", component:AboutComponent },
-      { path:"login", component:LoginComponent},
-      { path:"signup", component:SignupComponent},
-  //   ]
-  // },
-  // {
-  //   path:"customerdash", component:CustomerdashboardComponent
-  // },
-  // {
-  //   path:"admindash", component:AdmindashboardComponent
-  // },
+  { path:"", component:LoginComponent},
+  { path:"about", component:AboutComponent },
+  { path:"login", component:LoginComponent},
+  { path:"signup", component:SignupComponent},
   {
     path:"admin", loadChildren:() => import('./module/admin/admin.module').then(file => file.AdminModule)
   },

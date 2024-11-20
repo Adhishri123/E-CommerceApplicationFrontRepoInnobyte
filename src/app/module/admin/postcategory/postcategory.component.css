@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.mat-card {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input {
+    font-size: 12px;
+    width: 80%;
+    margin: 10px;
+    /* margin-right: 20px; */
+    margin-left: 24px;
+}
+button {
+    cursor: pointer;
+    border: none;
+    background-color: #f585d9;
+    color: #fff;
+    height: 35px;
+    padding: 10px;
+    margin: 9px;
+}
+button:hover {
+    background-color: #079ff7;
+}

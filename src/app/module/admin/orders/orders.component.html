@@ -1,0 +1,62 @@
+<!-- <p>orders works!</p> -->
+<table border="1" align="center">
+    <thead>
+        <tr>
+            <th>User Name</th>
+            <th>Description</th>
+            <th>Adress</th>
+            <th>Order Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of orders">
+            <td>{{order.userName}}</td>
+            <td>{{order.orderDescription}}</td>
+            <td>{{order.address}}</td>
+            <td>{{order.orderStatus}}</td>
+            <td>
+                <select>
+                    <option>--Select--</option>
+                    <option><button (click)="changeOrderStatus(order.id,'Shipped')">Shipped</button></option>
+                    <option><button (click)="changeOrderStatus(order.id,'Delivered')">Delivered</button>></option>
+                </select>              
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!-- <div class="container">
+    <div class="mat-card">
+        <div class="mat-card-content">
+            <table class="mat-elevation-z8">
+                <div class="ng-container">
+                    <th>User Name</th>
+                    <td *ngFor="let order of orders">{{order.userName}}</td>
+                </div>
+                <div class="ng-container">
+                    <th>Amount</th>
+                    <td *ngFor="let order of orders">{{order.amount}}</td>
+                </div>
+                <div class="ng-container">
+                    <th>Description</th>
+                    <td *ngFor="let order of orders">{{order.orderDescription}}</td>
+                </div>
+                <div class="ng-container">
+                    <th>Address</th>
+                    <td *ngFor="let order of orders">{{order.address}}</td>
+                </div>
+                <div class="ng-container">
+                    <th>Status</th>
+                    <td *ngFor="let order of orders">{{order.status}}</td>
+                </div>
+                <div class="ng-container">
+                    <th>Action</th>
+                    <td *ngFor="let order of orders">
+                        <button>Shipped</button>
+                        <button>Delivered</button>
+                    </td>
+                </div>
+            </table>
+        </div>
+    </div>
+</div> -->

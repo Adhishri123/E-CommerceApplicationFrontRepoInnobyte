@@ -1,16 +1,22 @@
 <!-- <p>signup works!</p> -->
-<div>
-    <form [formGroup]="signupform" (ngSubmit)="onSubmit()">
-        <input type="text" placeholder="Enter Full Name" formControlName="name" required>
-
-        <input type="email" placeholder="Enter Email Id" formControlName="email" required>
-
-        <input type="password" placeholder="Enter Password" formControlName="password" required>
-
-        <input type="text" placeholder="Enter Address" formControlName="address" required>
-
-        <button type="submit" [disabled]="signupform.invalid">SAVE</button>
+<div class="container">
+    <div class="mat-card">
+        <h2>Sign Up</h2>
+        <div class="mat-card-content">
+            <form [formGroup]="signupform" (ngSubmit)="onSubmit()">
+                <input type="text" placeholder="Enter Full Name" formControlName="name" required>
         
-        <span>Already have an account </span><button type="button" (click)="onLogin()">LOGIN</button>
-    </form>
+                <input type="email" placeholder="Enter Email Id" formControlName="email" required>
+        
+                <input type="password" placeholder="Enter Password" formControlName="password" required>
+        
+                <input type="text" placeholder="Enter Address" formControlName="address" required>
+        
+                <button type="submit" class="save-btn" [disabled]="signupform.invalid">SAVE</button>
+                <div class="btn">
+                <span>Already have an account </span><button type="button" class="login-btn" (click)="onLogin()">LOGIN</button>
+            </div>
+            </form>
+        </div>
+    </div>    
 </div>

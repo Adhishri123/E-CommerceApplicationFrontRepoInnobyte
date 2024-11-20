@@ -1,0 +1,27 @@
+<!-- <p>myorders works!</p> -->
+<table border="1" align="center">
+    <thead>
+        <tr>
+            <th>User Name</th>
+            <th>Description</th>
+            <th>Adress</th>
+            <th>Order Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of myOrders">
+            <td>{{order.userName}}</td>
+            <td>{{order.orderDescription}}</td>
+            <td>{{order.address}}</td>
+            <td>{{order.orderStatus}}</td>
+            <td>
+                <!-- <select>
+                    <option>--Select--</option>
+                    <option><button (click)="changeOrderStatus(order.id,'Shipped')">Shipped</button></option>
+                    <option><button (click)="changeOrderStatus(order.id,'Delivered')">Delivered</button>></option>
+                </select>               -->
+            </td>
+        </tr>
+    </tbody>
+</table>

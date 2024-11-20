@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonserviceService } from '../../service/commonservice.service';
 import { Router } from '@angular/router';
-import { User } from '../../model/user';
 import { UserstorageService } from '../../service/storage/userstorage.service';
 
 @Component({
@@ -26,29 +25,14 @@ export class LoginComponent implements OnInit{
   }
 
   onSubmit() {
-    // if(this.loginform.valid) {
-    //   const { userEmailId,password} = this.loginform.value;
-    //   this.http.loginUser(userEmailId,password).subscribe(
-    //     (user:User) => {
-    //       console.log('Login Successful',user);
-    //       this.http.setUserdata(user);
-    //       localStorage.setItem('Current User', JSON.stringify(user));
-    //       if(this.loginform.controls['userEmailId'].value==='admin1@gmail.com' && this.loginform.controls['password'].value==='admin@1') {
-    //         this.router.navigateByUrl("admindash");
-    //       }else {
-    //         this.router.navigateByUrl("customerdash");
-    //       }
-    //     },
-    //     error => {
-    //       console.error('Login failed',error);
-    //       this.errorMessage = 'Invalid Email or Password';
-    //     }
-    //   );
-    // }
     const username = this.loginform.get('email')!.value;
     const password = this.loginform.get('password')!.value;
     this.http.loginUser(username,password).subscribe(
-      (res) => {
+      (res:any) => {
+        console.log('Login Successful',res); 
+        // Store the token and user data
+      // localStorage.setItem('token', res.token);
+      // localStorage.setItem('user', JSON.stringify(res.user));
         // alert('Your Login Successfull.');
         if(UserstorageService.isAdminLoggedin()) {
           this.router.navigateByUrl('admin/dashboard');
